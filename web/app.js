@@ -2,6 +2,7 @@ const toolSelect = document.getElementById("tool-select");
 const rankingSelect = document.getElementById("ranking-select");
 const rowsEl = document.getElementById("rows");
 const metaEl = document.getElementById("meta");
+const repoLinkEl = document.getElementById("repo-link");
 
 const formatNumber = (value) => {
   if (value >= 100000000) return `${(value / 100000000).toFixed(1)}亿`;
@@ -51,7 +52,24 @@ const render = (snapshot) => {
   renderRows(rows);
 };
 
+const resolveGitHubRepoURL = () => {
+  const { hostname, pathname } = window.location;
+  const pathParts = pathname.split("/").filter(Boolean);
+
+  if (hostname.endsWith(".github.io")) {
+    const owner = hostname.replace(".github.io", "");
+    const repo = pathParts[0];
+    if (owner && repo) {
+      return `https://github.com/${owner}/${repo}`;
+    }
+  }
+  return repoLinkEl?.href || "https://github.com/";
+};
+
 const init = async () => {
+  if (repoLinkEl) {
+    repoLinkEl.href = resolveGitHubRepoURL();
+  }
   const response = await fetch("./data/snapshots/latest.json", { cache: "no-store" });
   const snapshot = await response.json();
   metaEl.textContent = `Reference: ${snapshot.referenceDate} | Version: ${snapshot.version}`;

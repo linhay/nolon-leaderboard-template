@@ -24,6 +24,29 @@ body {
 
 .header h1 { margin: 0; }
 .header p { margin-top: 6px; color: var(--muted); }
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.repo-button {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 8px 12px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  background: var(--panel);
+  transition: all 0.2s ease;
+}
+
+.repo-button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
 
 .controls {
   margin-top: 18px;
@@ -74,4 +97,5 @@ tr:last-child td { border-bottom: 0; }
 
 @media (max-width: 768px) {
   th:nth-child(5), td:nth-child(5) { display: none; }
+  .header-top { align-items: flex-start; flex-direction: column; }
 }
