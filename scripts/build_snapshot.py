@@ -188,7 +188,7 @@ def main() -> int:
         points = collect_latest_points(repo_root)
         reference_date = infer_reference_date(points)
         digest, generated_at = deterministic_metadata(points)
-        version = os.getenv("GITHUB_SHA") or os.getenv("CI_COMMIT_SHA") or f"local-{digest}"
+        version = f"local-{digest}"
         snapshot = {
             "version": version,
             "generatedAt": generated_at,
