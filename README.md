@@ -1,5 +1,8 @@
 # Nolon Leaderboard Template
 
+[![CI](https://github.com/linhay/nolon-leaderboard-template/actions/workflows/ci.yml/badge.svg)](https://github.com/linhay/nolon-leaderboard-template/actions/workflows/ci.yml)
+[![Pages](https://img.shields.io/badge/pages-live-0a7ea4)](https://linhay.github.io/nolon-leaderboard-template/)
+
 Fork this repository on GitHub or GitLab to run an independent token leaderboard site.
 
 ## What this template includes
