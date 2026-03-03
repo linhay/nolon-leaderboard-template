@@ -9,5 +9,14 @@
       "rising": []
     },
     "byTool": {}
+  },
+  "timeseries": {
+    "overall": {
+      "dates": [
+        "1970-01-01"
+      ],
+      "users": []
+    },
+    "byTool": {}
   }
 }

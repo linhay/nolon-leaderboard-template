@@ -150,6 +150,16 @@ select:focus-visible {
   flex-wrap: wrap;
 }
 
+.metric-note {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border: 1px solid #bfdbfe;
+  border-radius: 12px;
+  background: #eff6ff;
+  color: #1e3a8a;
+  font-size: 12px;
+}
+
 label {
   display: flex;
   flex-direction: column;
@@ -172,6 +182,110 @@ select {
 .table-wrap {
   margin-top: 14px;
   overflow: hidden;
+}
+
+.trend-wrap {
+  margin-top: 14px;
+  padding: 14px;
+}
+
+.trend-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.trend-head h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.trend-empty {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 12px;
+}
+
+.trend-svg {
+  margin-top: 10px;
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+  background: #f8fafc;
+}
+
+.trend-chart-shell {
+  position: relative;
+}
+
+.trend-tooltip {
+  position: absolute;
+  min-width: 150px;
+  max-width: 220px;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: 0 10px 18px rgba(16, 42, 67, 0.12);
+  font-size: 12px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.trend-tooltip-date {
+  margin: 0 0 6px;
+  color: var(--ink-soft);
+  font-size: 11px;
+}
+
+.trend-tooltip-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.trend-tooltip-row strong {
+  margin-left: auto;
+  font-variant-numeric: tabular-nums;
+}
+
+.trend-legend {
+  margin-top: 10px;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+.trend-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 12px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.trend-legend-item strong {
+  margin-left: auto;
+  font-variant-numeric: tabular-nums;
+}
+
+.trend-legend-item.is-hidden {
+  opacity: 0.45;
+  background: #f8fafc;
+}
+
+.trend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  display: inline-block;
 }
 
 table {
@@ -263,6 +377,10 @@ tr:last-child td {
   }
 
   .summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .trend-legend {
     grid-template-columns: 1fr;
   }
 

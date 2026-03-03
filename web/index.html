@@ -61,6 +61,31 @@
             <option value="rising">Rising</option>
           </select>
         </label>
+        <label for="window-select">
+          Trend Window
+          <select id="window-select" aria-label="Filter trend window">
+            <option value="7">7 Days</option>
+            <option value="14">14 Days</option>
+            <option value="30">30 Days</option>
+            <option value="90">90 Days</option>
+          </select>
+        </label>
+      </section>
+      <section class="metric-note" aria-label="Metric notes">
+        <strong>Metrics:</strong> Primary Tool = max token tool within selected ranking scope;
+        Total/Input/Output follow selected ranking rows; Last Updated shown as relative time (hover for exact UTC).
+      </section>
+
+      <section class="panel trend-wrap" aria-label="Top 5 token trends">
+        <div class="trend-head">
+          <h3>Top 5 Token Trends</h3>
+          <p id="trend-empty" class="trend-empty" hidden>No trend data</p>
+        </div>
+        <div class="trend-chart-shell">
+          <svg id="trend-svg" class="trend-svg" viewBox="0 0 760 280" role="img" aria-label="Token trend chart"></svg>
+          <div id="trend-tooltip" class="trend-tooltip" hidden></div>
+        </div>
+        <div id="trend-legend" class="trend-legend"></div>
       </section>
 
       <section class="panel table-wrap">
@@ -69,8 +94,8 @@
             <tr>
               <th>Rank</th>
               <th>User</th>
-              <th>Value</th>
-              <th>Delta</th>
+              <th>Primary Tool / Total Tokens</th>
+              <th>Input / Output Tokens</th>
               <th>Last Updated</th>
             </tr>
           </thead>
@@ -78,6 +103,7 @@
         </table>
       </section>
     </main>
+    <script src="./trend_logic.js"></script>
     <script src="./app.js"></script>
   </body>
 </html>
