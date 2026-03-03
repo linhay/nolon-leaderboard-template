@@ -1,0 +1,32 @@
+stages:
+  - audit
+  - pages
+
+variables:
+  PYTHONUNBUFFERED: "1"
+
+audit:
+  stage: audit
+  image: python:3.12
+  script:
+    - python3 -m unittest discover -s scripts/tests -v
+    - python3 scripts/validate_all_submissions.py .
+    - python3 scripts/build_snapshot.py .
+    - |
+      if ! git diff --quiet -- data/snapshots/latest.json; then
+        echo "Snapshot drift detected. Run build_snapshot.py and commit latest.json."
+        git diff -- data/snapshots/latest.json
+        exit 1
+      fi
+
+pages:
+  stage: pages
+  image: python:3.12
+  script:
+    - python3 scripts/build_site_bundle.py .
+    - mv .site public
+  artifacts:
+    paths:
+      - public
+  only:
+    - main

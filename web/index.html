@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nolon Leaderboard</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="header">
+        <h1>Nolon Token Leaderboard</h1>
+        <p id="meta">Loading snapshot...</p>
+      </header>
+
+      <section class="controls">
+        <label>
+          Tool
+          <select id="tool-select"></select>
+        </label>
+        <label>
+          Ranking
+          <select id="ranking-select">
+            <option value="daily">Daily</option>
+            <option value="7d">7 Days</option>
+            <option value="rising">Rising</option>
+          </select>
+        </label>
+      </section>
+
+      <section class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>User</th>
+              <th>Value</th>
+              <th>Delta</th>
+              <th>Last Updated</th>
+            </tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </section>
+    </main>
+    <script src="./app.js"></script>
+  </body>
+</html>

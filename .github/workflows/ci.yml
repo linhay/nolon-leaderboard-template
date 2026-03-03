@@ -1,0 +1,54 @@
+name: leaderboard-ci
+
+on:
+  pull_request:
+  push:
+    branches: ["main"]
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run unit tests
+        run: python3 -m unittest discover -s scripts/tests -v
+      - name: Validate submissions
+        run: python3 scripts/validate_all_submissions.py .
+      - name: Build snapshot
+        run: python3 scripts/build_snapshot.py .
+      - name: Ensure snapshot committed in PR
+        if: github.event_name == 'pull_request'
+        run: |
+          if ! git diff --quiet -- data/snapshots/latest.json; then
+            echo "Snapshot drift detected. Run build_snapshot.py and commit latest.json."
+            git diff -- data/snapshots/latest.json
+            exit 1
+          fi
+
+  pages:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: audit
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build site bundle
+        run: python3 scripts/build_site_bundle.py .
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .site
+      - id: deployment
+        uses: actions/deploy-pages@v4
