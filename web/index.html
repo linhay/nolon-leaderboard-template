@@ -8,22 +8,54 @@
   </head>
   <body>
     <main class="container">
-      <header class="header">
-        <div class="header-top">
-          <h1>Nolon Token Leaderboard</h1>
-          <a id="repo-link" class="repo-button" href="https://github.com/linhay/nolon-leaderboard-template" target="_blank" rel="noreferrer">GitHub Repo</a>
+      <header class="hero">
+        <div class="hero-top">
+          <p class="eyebrow">Nolon Community Signal</p>
+          <a
+            id="repo-link"
+            class="repo-button"
+            href="https://github.com/linhay/nolon-leaderboard-template"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub Repo
+          </a>
         </div>
-        <p id="meta">Loading snapshot...</p>
+        <h1>Token Leaderboard</h1>
+        <p class="hero-copy">
+          Compare tool usage momentum across daily, 7-day, and rising trends.
+          Switch tools to inspect Codex, Gemini, and more.
+        </p>
+        <p id="meta" class="meta">Loading snapshot...</p>
       </header>
 
-      <section class="controls">
-        <label>
+      <section class="summary-grid" aria-label="Leaderboard summary">
+        <article class="summary-card">
+          <p>Current Ranking</p>
+          <h2 id="summary-ranking">Daily</h2>
+        </article>
+        <article class="summary-card">
+          <p>Selected Tool</p>
+          <h2 id="summary-tool">All tools</h2>
+        </article>
+        <article class="summary-card">
+          <p>Rows</p>
+          <h2 id="summary-count">0</h2>
+        </article>
+        <article class="summary-card">
+          <p>Top Value</p>
+          <h2 id="summary-top">0</h2>
+        </article>
+      </section>
+
+      <section class="panel controls" aria-label="Filters">
+        <label for="tool-select">
           Tool
-          <select id="tool-select"></select>
+          <select id="tool-select" aria-label="Filter by tool"></select>
         </label>
-        <label>
+        <label for="ranking-select">
           Ranking
-          <select id="ranking-select">
+          <select id="ranking-select" aria-label="Filter by ranking type">
             <option value="daily">Daily</option>
             <option value="7d">7 Days</option>
             <option value="rising">Rising</option>
@@ -31,7 +63,7 @@
         </label>
       </section>
 
-      <section class="table-wrap">
+      <section class="panel table-wrap">
         <table>
           <thead>
             <tr>
